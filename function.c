@@ -1,54 +1,20 @@
 #include "function.h"
 
-char* findCommonChars(char *str1, char *str2) 
+void findCommonChars(char *str1, char *str2, int *cetele) 
 {
-    int i, j;
-    int found;
-    int count = 0;
-
-    // İlk dizideki her karakter için, ikinci dizide var mı diye kontrol edelim
-    for (i = 0; str1[i] != '\0'; i++) {
-        found = 0;
-        // Eğer karakterler farklı indekslerde aynı ise kontrol edelim
-        for (j = 0; str2[j] != '\0'; j++) {
-            if (str1[i] == str2[j] && i != j) {
-                found = 1;
-                break;
-            }
-        }
-        // Karakter bulunduysa sayacı arttıralım
-        if (found) {
-            count++;
-        }
+    // İlk stringdeki her karakterin cetvelini artır
+    while (*str1) {
+        cetele[(unsigned char)*str1]++;
+        str1++;
     }
 
-    // Ortak karakterler için bellek ayıralım
-    char *result = (char*)malloc((count + 1) * sizeof(char));
-    if (result == NULL) {
-        // Bellek tahsisi başarısız oldu
-        return NULL;
+    // İkinci stringdeki her karakterin cetvelini azalt
+    while (*str2) {
+        cetele[(unsigned char)*str2]--;
+        str2++;
     }
-
-    // Ortak karakterleri result array'ine koyalım
-    int index = 0;
-    for (i = 0; str1[i] != '\0'; i++) {
-        found = 0;
-        // Eğer karakterler farklı indekslerde aynı ise kontrol edelim
-        for (j = 0; str2[j] != '\0'; j++) {
-            if (str1[i] == str2[j] && i != j) {
-                found = 1;
-                break;
-            }
-        }
-        // Eğer karakter bulunduysa result array'ine ekleyelim
-        if (found) {
-            result[index++] = str1[i];
-        }
-    }
-    result[index] = '\0'; // Son karakter null-terminate edelim
-
-    return result;
 }
+
 
 int	*find_common_indices(char *str1, char *str2) 
 {

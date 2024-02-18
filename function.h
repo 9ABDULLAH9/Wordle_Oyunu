@@ -15,7 +15,7 @@
 #define YAZAR "Abdullah Mert Serhan"
 
 // Fonksiyon Prototipleri
-char* findCommonChars(char *str1, char *str2);
+void findCommonChars(char *str1, char *str2, int *cetele);
 
 int *find_common_indices(char *str1, char *str2);
 
