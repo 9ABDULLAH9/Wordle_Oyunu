@@ -70,28 +70,16 @@ int main(void)
         printf("\n");
 
         // Ortak karakterleri bul ve yanlış yerdeki harfler çetelesini güncelle
-        for (int i = 0; i < kelime_uzunluk; i++)
-            if (kelime[i] != tahmin[i] && strchr(tahmin, kelime[i]) != NULL)
-                yanlisYerdeCetele[(unsigned char)kelime[i]] = 1;
+        updateCetele(tahmin, yanlisYerdeCetele, 1);
 
         // Yeri yanlış harfleri yazdır
-        printf("Yeri yanlis harfler: ");
-        for (int i = 0; i < 256; i++)
-            if (yanlisYerdeCetele[i])
-                printf("%c, ", (char)i);
-        printf("\n");
+        printArray("Yeri yanlis harfler: ", yanlisYerdeCetele, 256);
 
         // Olmayan harfleri bul ve çeteleyi güncelle
-        for (int i = 0; i < kelime_uzunluk; i++)
-            if (!strchr(kelime, tahmin[i]))
-                olmayanHarflerCetele[(unsigned char)tahmin[i]] = 1;
+        updateCetele(tahmin, olmayanHarflerCetele, 1);
 
         // Olmayan harfleri yazdır
-        printf("Olmayan harfler: ");
-        for (int i = 0; i < 256; i++)
-            if (olmayanHarflerCetele[i])
-                printf("%c, ", (char)i);
-        printf("\n");
+        printArray("Olmayan harfler: ", olmayanHarflerCetele, 256);
 
         // Kullanıcının doğru tahminde bulunup bulunmadığını kontrol et
         if (strcmp(tahmin, kelime) == 0) {

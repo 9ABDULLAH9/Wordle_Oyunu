@@ -90,3 +90,18 @@ char* findDifferentCharacters(const char *firstString, const char *secondString)
 
     return diffChars;
 }
+
+void printArray(char *msg, int *arr, int size) {
+    printf("%s", msg);
+    for (int i = 0; i < size; i++)
+        if (arr[i])
+            printf("%c, ", (char)i);
+    printf("\n");
+}
+
+void updateCetele(char *str, int *cetele, int increment) {
+    while (*str) {
+        cetele[(unsigned char)*str] += increment;
+        str++;
+    }
+}

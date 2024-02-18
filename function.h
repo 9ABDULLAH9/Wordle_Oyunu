@@ -21,4 +21,8 @@ int *find_common_indices(char *str1, char *str2);
 
 char* findDifferentCharacters(const char *firstString, const char *secondString);
 
+void printArray(char *msg, int *arr, int size);
+
+void updateCetele(char *str, int *cetele, int increment);
+
 #endif // FUNCTION_H
