@@ -15,15 +15,15 @@ Bu projeyi derlemek ve çalıştırmak için GCC derleyicisine ihtiyacınız ola
 ```bash
 sudo apt update
 sudo apt install build-essential
-
-Derleme
+```
+##Derleme
 Proje dosyalarını derlemek için aşağıdaki komutları kullanabilirsiniz:
 
 gcc -o game main.c function.c
 
 Bu komut, main.c ve function.c dosyalarını derler ve çıktıyı game adlı bir dosyada saklar.
 
-Kullanım
+##Kullanım
 Derleme işlemi tamamlandıktan sonra, oyunu aşağıdaki komutla başlatabilirsiniz:
 
 ./game
