@@ -70,13 +70,17 @@ int main(void)
         printf("\n");
 
         // Ortak karakterleri bul ve yanlış yerdeki harfler çetelesini güncelle
-        updateCetele(tahmin, yanlisYerdeCetele, 1);
+        for (int i = 0; i < kelime_uzunluk; i++)
+            if (kelime[i] != tahmin[i] && strchr(kelime, tahmin[i]) != NULL)
+                yanlisYerdeCetele[(unsigned char)tahmin[i]] = 1;
 
         // Yeri yanlış harfleri yazdır
         printArray("Yeri yanlis harfler: ", yanlisYerdeCetele, 256);
 
         // Olmayan harfleri bul ve çeteleyi güncelle
-        updateCetele(tahmin, olmayanHarflerCetele, 1);
+        for (int i = 0; i < kelime_uzunluk; i++)
+            if (!strchr(kelime, tahmin[i]))
+                olmayanHarflerCetele[(unsigned char)tahmin[i]] = 1;
 
         // Olmayan harfleri yazdır
         printArray("Olmayan harfler: ", olmayanHarflerCetele, 256);
