@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* solve(char* string1, char* string2) {
+char* solve(char* string1, char* string2) 
+{
     int uzunluk = strlen(string1); // İfadelerin uzunluğunu alıyoruz, her ikisinin de aynı uzunlukta olduğunu varsayıyoruz
     char* sonuc = (char*)malloc((uzunluk + 1) * sizeof(char)); // Sonucu saklamak için bellekten yer ayırıyoruz
 
@@ -22,7 +23,8 @@ char* solve(char* string1, char* string2) {
     return sonuc; // Sonuc dizisini döndürüyoruz
 }
 
-int	*find_common_indices(char *str1, char *str2) {
+int	*find_common_indices(char *str1, char *str2) 
+{
 	int i;
 	int common_indices_count = 0;
 
@@ -54,7 +56,8 @@ int	*find_common_indices(char *str1, char *str2) {
 	return common_indices;
 }
 
-char* findDifferentCharacters(const char *firstString, const char *secondString, int *length) {
+char* findDifferentCharacters(const char *firstString, const char *secondString) 
+{
     // Karakterlerin sayısını tutmak için bir cetvel oluşturuyoruz
     int charTally[256] = {0}; // ASCII karakterler için
     int diffCount = 0;
@@ -92,9 +95,6 @@ char* findDifferentCharacters(const char *firstString, const char *secondString,
         }
     }
 
-    // Döndürülen dizi uzunluğunu güncelle
-    *length = diffCount;
-
     return diffChars;
 }
 
@@ -105,7 +105,7 @@ char	*ft_strlowcase(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] >= 65 && str[i] <= 90)
+		if (str[i] >= 65 && str[i] <= 90)//Küçük harfe çevirme
 			str[i] += 32;
 		i++;
 	}
