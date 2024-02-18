@@ -53,3 +53,47 @@ int	*find_common_indices(char *str1, char *str2) {
 
 	return common_indices;
 }
+
+char* findDifferentCharacters(const char *firstString, const char *secondString, int *length) {
+    // Karakterlerin sayısını tutmak için bir cetvel oluşturuyoruz
+    int charTally[256] = {0}; // ASCII karakterler için
+    int diffCount = 0;
+
+    // İlk stringdeki her karakterin cetvelini artır
+    while (*firstString) {
+        charTally[(unsigned char)*firstString]++;
+        firstString++;
+    }
+
+    // İkinci stringdeki her karakterin cetvelini azalt
+    while (*secondString) {
+        charTally[(unsigned char)*secondString]--;
+        secondString++;
+    }
+
+    // İkinci stringde olup ilk stringde olmayan karakterlerin sayısını hesapla
+    for (int i = 0; i < 256; i++) {
+        if (charTally[i] < 0) {
+            diffCount++;
+        }
+    }
+
+    // İkinci stringde olup ilk stringde olmayan karakterleri bir diziye kaydet
+    char *diffChars = (char*)malloc(diffCount * sizeof(char));
+    if (diffChars == NULL) {
+        printf("Bellek tahsisi basarisiz.\n");
+        exit(1);
+    }
+
+    int index = 0;
+    for (int i = 0; i < 256; i++) {
+        if (charTally[i] < 0) {
+            diffChars[index++] = (char)i;
+        }
+    }
+
+    // Döndürülen dizi uzunluğunu güncelle
+    *length = diffCount;
+
+    return diffChars;
+}
