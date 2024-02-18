@@ -98,16 +98,35 @@ char* findDifferentCharacters(const char *firstString, const char *secondString)
     return diffChars;
 }
 
-char	*ft_strlowcase(char *str)
-{
-	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= 65 && str[i] <= 90)//Küçük harfe çevirme
-			str[i] += 32;
-		i++;
+
+int main(void)
+{
+	char kelime[100];
+    printf("Bulunmasini istediginiz kelimeyi girin: ");
+    scanf("%s", kelime);
+    
+    int kelime_uzunluk = strlen(kelime);
+
+	//döngü başlar
+    while (1) {
+        char tahmin[100];
+        printf("%d harfli kelime tahmininizi girin: ", kelime_uzunluk);
+        scanf("%s", tahmin);
+        
+        if (strlen(tahmin) != kelime_uzunluk) {
+            printf("Tahmininiz %d harfli olmalidir. Lutfen tekrar deneyin.\n", kelime_uzunluk);
+            continue;
+        }
+
+        for (int i = 0; i < kelime_uzunluk; i++) {
+            tahmin[i] = tolower(tahmin[i]);
+        }
+
+        if (strcmp(tahmin, kelime) == 0) {
+            printf("Tebrikler! Dogru kelimeyi buldunuz.\n");
+            break;
+        }
 	}
-	return (str);
+	return (0);
 }
