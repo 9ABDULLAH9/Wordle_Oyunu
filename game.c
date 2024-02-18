@@ -31,6 +31,15 @@ int main(void)
     for (int i = 0; i < 256; i++)
         yanlisYerdeCetele[i] = 0;
 
+    // olmayan harfler için çetele oluştur
+    int *olmayanHarflerCetele = malloc(256 * sizeof(int)); // ASCII karakterler için
+    if (olmayanHarflerCetele == NULL) {
+        printf("Bellek tahsisi basarisiz.\n");
+        return 1;
+    }
+    for (int i = 0; i < 256; i++)
+        olmayanHarflerCetele[i] = 0;
+
     // döngü başlar
     while (1) {
         char tahmin[100];
@@ -72,6 +81,18 @@ int main(void)
                 printf("%c, ", (char)i);
         printf("\n");
 
+        // Olmayan harfleri bul ve çeteleyi güncelle
+        for (int i = 0; i < kelime_uzunluk; i++)
+            if (!strchr(kelime, tahmin[i]))
+                olmayanHarflerCetele[(unsigned char)tahmin[i]] = 1;
+
+        // Olmayan harfleri yazdır
+        printf("Olmayan harfler: ");
+        for (int i = 0; i < 256; i++)
+            if (olmayanHarflerCetele[i])
+                printf("%c, ", (char)i);
+        printf("\n");
+
         // Kullanıcının doğru tahminde bulunup bulunmadığını kontrol et
         if (strcmp(tahmin, kelime) == 0) {
             printf("Tebrikler! Dogru kelimeyi buldunuz.\n");
@@ -82,6 +103,7 @@ int main(void)
     // Belleği serbest bırak
     free(cetele);
     free(yanlisYerdeCetele);
+    free(olmayanHarflerCetele);
 
     return 0;
 }
