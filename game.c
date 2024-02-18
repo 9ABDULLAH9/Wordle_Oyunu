@@ -1,26 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-char* solve(char* string1, char* string2) 
-{
-    int uzunluk = strlen(string1); // İfadelerin uzunluğunu alıyoruz, her ikisinin de aynı uzunlukta olduğunu varsayıyoruz
-    char* sonuc = (char*)malloc((uzunluk + 1) * sizeof(char)); // Sonucu saklamak için bellekten yer ayırıyoruz
+char* findCommonChars(char *str1, char *str2) {
+    int i, j;
+    int found;
+    int count = 0;
 
-    if (sonuc == NULL) { // Bellek ayırma başarısız olduysa
-        printf("Bellek ayirma basarisiz!\n");
-        exit(1);
-    }
-
-    sonuc[0] = '\0'; // Sonucu boş bir string olarak başlatıyoruz
-    
-    for (int i = 0; i < uzunluk; i++) {
-        if (string1[i] != string2[i]) { // İfadelerin aynı indexteki karakterlerini karşılaştırıyoruz
-            sonuc[strlen(sonuc)] = string1[i]; // Eğer farklıysa, sonuca ekliyoruz
+    // İlk dizideki her karakter için, ikinci dizide var mı diye kontrol edelim
+    for (i = 0; str1[i] != '\0'; i++) {
+        found = 0;
+        // Eğer karakterler farklı indekslerde aynı ise kontrol edelim
+        for (j = 0; str2[j] != '\0'; j++) {
+            if (str1[i] == str2[j] && i != j) {
+                found = 1;
+                break;
+            }
+        }
+        // Karakter bulunduysa sayacı arttıralım
+        if (found) {
+            count++;
         }
     }
-    
-    sonuc[strlen(sonuc)] = '\0'; // Sonucun sonuna null karakter ekleyerek stringi sonlandırıyoruz
-    return sonuc; // Sonuc dizisini döndürüyoruz
+
+    // Ortak karakterler için bellek ayıralım
+    char *result = (char*)malloc((count + 1) * sizeof(char));
+    if (result == NULL) {
+        // Bellek tahsisi başarısız oldu
+        return NULL;
+    }
+
+    // Ortak karakterleri result array'ine koyalım
+    int index = 0;
+    for (i = 0; str1[i] != '\0'; i++) {
+        found = 0;
+        // Eğer karakterler farklı indekslerde aynı ise kontrol edelim
+        for (j = 0; str2[j] != '\0'; j++) {
+            if (str1[i] == str2[j] && i != j) {
+                found = 1;
+                break;
+            }
+        }
+        // Eğer karakter bulunduysa result array'ine ekleyelim
+        if (found) {
+            result[index++] = str1[i];
+        }
+    }
+    result[index] = '\0'; // Son karakter null-terminate edelim
+
+    return result;
 }
 
 int	*find_common_indices(char *str1, char *str2) 
@@ -122,6 +150,12 @@ int main(void)
         for (int i = 0; i < kelime_uzunluk; i++) {
             tahmin[i] = tolower(tahmin[i]);
         }
+
+		
+
+
+
+
 
         if (strcmp(tahmin, kelime) == 0) {
             printf("Tebrikler! Dogru kelimeyi buldunuz.\n");
