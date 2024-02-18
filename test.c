@@ -8,7 +8,6 @@ int main(void)
     scanf("%s", kelime);
 
     int kelime_uzunluk = strlen(kelime);
-	int flgtmne = 1;
 
     // kelime harfleri küçült
     for (int i = 0; i < kelime_uzunluk; i++)
@@ -48,9 +47,26 @@ int main(void)
 
         // Kelimeyi yazdır
         printf("Kelime: ");
-        for (int i = 0; i < kelime_uzunluk; i++)
+		for (int i = 0; i < kelime_uzunluk; i++)
             printf("%c", cetele[i] ? kelime[i] : '_');
         printf("\n");
+
+        // Ortak karakterleri bul
+        char *commonChars = findCommonChars(kelime, tahmin);
+        if (commonChars == NULL) {
+            printf("Bellek tahsisi basarisiz.\n");
+            return 1;
+        }
+
+        // Yeri yanlış harfleri yazdır
+        printf("Yeri yanlis harfler: ");
+        for (int i = 0; commonChars[i] != '\0'; i++)
+            if (!cetele[i])
+                printf("%c, ", commonChars[i]);
+        printf("\n");
+
+        // Belleği serbest bırak
+        free(commonChars);
 
         // Kullanıcının doğru tahminde bulunup bulunmadığını kontrol et
         if (strcmp(tahmin, kelime) == 0) {
