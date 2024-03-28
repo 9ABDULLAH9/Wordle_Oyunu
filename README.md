@@ -28,6 +28,8 @@ Bu komut, main.c ve function.c dosyalarını derler ve çıktıyı game adlı bi
 ## Kullanım
 Derleme işlemi tamamlandıktan sonra, oyunu aşağıdaki komutla başlatabilirsiniz:
 
+```bash
 ./game
+```
 
 Oyun, tahmin etmeniz gereken kelimeyi girmenizi isteyecektir. Daha sonra, kelimenin harflerini tahmin etmeye çalışacaksınız. Her tahmininizde, doğru ve yanlış yerdeki harfler ile olmayan harfler hakkında ipuçları alacaksınız.
