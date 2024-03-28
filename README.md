@@ -19,7 +19,7 @@ sudo apt install build-essential
 ## Derleme
 Proje dosyalarını derlemek için aşağıdaki komutları kullanabilirsiniz:
 
-gcc -o game main.c function.c
+gcc -o game game.c function.c
 
 Bu komut, main.c ve function.c dosyalarını derler ve çıktıyı game adlı bir dosyada saklar.
 
